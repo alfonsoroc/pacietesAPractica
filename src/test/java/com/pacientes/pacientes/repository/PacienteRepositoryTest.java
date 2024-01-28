@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
@@ -37,6 +38,9 @@ class PacienteRepositoryTest {
     @Test
     public void findBynombrePaciente() {
         List<Pacientes> pacientes = repository.findBynombre("Alfonso");
+        if(pacientes.isEmpty()){
+            System.out.println("Paciente no Registrado");
+        }
         System.out.println("Paciente = " + pacientes);
     }
 
@@ -49,11 +53,31 @@ class PacienteRepositoryTest {
     @Test
     @Transactional
     public void deleteById(){
-        Pacientes pacientes = repository.findByidPaciente(10).orElse(null);
+        Pacientes pacientes = repository.findByidPaciente(1).orElse(null);
         if (pacientes != null){
             repository.delete(pacientes);
         }
 
+    }
+    @Test
+    @Transactional
+    public void updatePaciente() throws ParseException {
+        String fechaEspecifica = "1990-01-01";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date nacimiento = sdf.parse(fechaEspecifica);
+        Optional<Pacientes> optionalPacientes = repository.findByidPaciente(1);
+        if(optionalPacientes.isPresent()){
+            Pacientes pacienteExistente = optionalPacientes.get();
+            pacienteExistente.setNombre("Abraham");
+            pacienteExistente.setApellido("Rocha");
+            pacienteExistente.setFechaNacimiento(nacimiento);
+            pacienteExistente.setEdad(24);
+            pacienteExistente.setPeso(78.00f);
+            pacienteExistente.setAltura(175f);
+            pacienteExistente.setTelefono("6672520218");
+            pacienteExistente.setEmail("alfonsoroc@g.com");
+            repository.save(pacienteExistente);
+        }
     }
 
 }
