@@ -49,7 +49,11 @@ class PacienteRepositoryTest {
     @Test
     @Transactional
     public void deleteById(){
-        Pacientes pacientes = repository.deleteAllByidPaciente(10).get();
+        Pacientes pacientes = repository.findByidPaciente(10).orElse(null);
+        if (pacientes != null){
+            repository.delete(pacientes);
+        }
+
     }
 
 }

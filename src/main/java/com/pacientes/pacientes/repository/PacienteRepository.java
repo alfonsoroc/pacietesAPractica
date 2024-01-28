@@ -15,4 +15,6 @@ public interface PacienteRepository extends JpaRepository<Pacientes,Integer> {
     List<Pacientes> findBy();
 
     Optional<Pacientes> deleteAllByidPaciente(Integer idPaciente);
+
+    Optional<Pacientes> findByidPaciente(Integer idPaciente);
 }
