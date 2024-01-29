@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -74,5 +75,13 @@ public class Pacientes {
             nullable = false
     )
     private String email;
+    @OneToMany
+    @JoinColumn
+            (
+                    name = "id_paciente",
+                    referencedColumnName = "idPaciente"
+
+            )
+    private List<Citas> listCitas;
 
 }

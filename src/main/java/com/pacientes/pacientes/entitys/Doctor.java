@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -41,5 +43,13 @@ public class Doctor {
             nullable = false
     )
     private String especialidad;
+    @OneToMany
+    @JoinColumn
+            (
+                    name = "id_doctor",
+                    referencedColumnName = "idDoctor"
+
+            )
+    private List<Citas> listCitas;
 
 }
