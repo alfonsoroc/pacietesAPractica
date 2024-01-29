@@ -56,9 +56,9 @@ public class Controller {
         return doctorServices.saveDoctor(doctor);
     }
 
-    @PostMapping("guardar/cita")
-    public String saveCita(@RequestBody Citas citas){
-        return citasServices.guardarCitas(citas);
+    @PostMapping("guardar/cita/{paciente}/{doctor}")
+    public String saveCita(@RequestBody Citas citas,@PathVariable int paciente,@PathVariable int doctor){
+        return citasServices.guardarCitas(citas,paciente,doctor);
     }
 
     @GetMapping("consultar/cita/{id}")

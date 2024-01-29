@@ -78,8 +78,8 @@ public class Pacientes {
     @OneToMany
     @JoinColumn
             (
-                    name = "id_paciente",
-                    referencedColumnName = "idPaciente"
+            name = "id_paciente",
+            referencedColumnName = "idPaciente"
 
             )
     private List<Citas> listCitas;

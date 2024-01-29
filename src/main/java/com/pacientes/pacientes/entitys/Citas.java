@@ -36,4 +36,12 @@ public class Citas {
             nullable = false
     )
     private String fechaCita;
+
+    @ManyToOne
+    @JoinColumn(name = "id_paciente")
+    private  Pacientes pacientes;
+
+    @ManyToOne
+    @JoinColumn(name = "id_doctor")
+    private Doctor doctor;
 }
