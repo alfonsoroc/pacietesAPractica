@@ -1,8 +1,10 @@
 package com.pacientes.pacientes.controller;
 
+import com.pacientes.pacientes.entitys.Citas;
 import com.pacientes.pacientes.entitys.Doctor;
 import com.pacientes.pacientes.entitys.Pacientes;
 import com.pacientes.pacientes.repository.PacienteRepository;
+import com.pacientes.pacientes.services.CitasServices;
 import com.pacientes.pacientes.services.DoctorServices;
 import com.pacientes.pacientes.services.PacienteServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class Controller {
 
     @Autowired
     DoctorServices doctorServices;
+
+    @Autowired
+    CitasServices citasServices;
 
     @GetMapping()
     public String index(){
@@ -49,6 +54,16 @@ public class Controller {
     @PostMapping("guardar/doctor")
     public String saveDoctor(@RequestBody Doctor doctor){
         return doctorServices.saveDoctor(doctor);
+    }
+
+    @PostMapping("guardar/cita")
+    public String saveCita(@RequestBody Citas citas){
+        return citasServices.guardarCitas(citas);
+    }
+
+    @GetMapping("consultar/cita/{id}")
+    public Optional<Citas> consultarById(@PathVariable int id) throws Exception {
+        return citasServices.consultarCita(id);
     }
 
 

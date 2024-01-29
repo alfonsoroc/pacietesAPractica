@@ -10,4 +10,6 @@ public interface CitasRepository extends JpaRepository<Citas,Integer> {
     Optional<Citas> findByidCitas(int idCitas);
 
     List<Citas> findBy();
+
+    void deleteByidCitas(int idCitas);
 }
