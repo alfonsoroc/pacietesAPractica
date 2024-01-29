@@ -53,9 +53,18 @@ class PacienteRepositoryTest {
     @Test
     @Transactional
     public void deleteById(){
-        Pacientes pacientes = repository.findByidPaciente(1).orElse(null);
-        if (pacientes != null){
-            repository.delete(pacientes);
+        Optional<Pacientes> pacientes = repository.findByidPaciente(10);
+        if (pacientes.isPresent()){
+            System.out.println("Paciente = " + pacientes);
+            Pacientes deletePaciente = pacientes.get();
+            try {
+                repository.deleteById(10);
+                System.out.println("Paciente eliminado correctamente.");
+            }catch (Exception e){
+                System.err.println("Error al intentar eliminar el paciente: " + e.getMessage());
+                e.printStackTrace();
+            }
+
         }
 
     }
@@ -65,7 +74,7 @@ class PacienteRepositoryTest {
         String fechaEspecifica = "1990-01-01";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date nacimiento = sdf.parse(fechaEspecifica);
-        Optional<Pacientes> optionalPacientes = repository.findByidPaciente(1);
+        Optional<Pacientes> optionalPacientes = repository.findByidPaciente(10);
         if(optionalPacientes.isPresent()){
             Pacientes pacienteExistente = optionalPacientes.get();
             pacienteExistente.setNombre("Abraham");

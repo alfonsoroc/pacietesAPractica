@@ -12,34 +12,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Table(
-        name = "tbl_doctor"
+        name = "tbl_citas"
 )
-public class Doctor {
+public class Citas {
     @Id
     @SequenceGenerator(
-            name = "doctor_squence",
-            sequenceName = "doctor_sequence",
+            name = "citas_sequence",
+            sequenceName = "citas_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
-            generator = "doctor_squence",
+            generator = "citas_sequence",
             strategy = GenerationType.SEQUENCE
     )
-    private int idDoctor;
+    private int idCitas;
     @Column(
-            name = "nombre_doctor",
+            name = "cita_concepto",
             nullable = false
     )
-    private String nombreDoctor;
+    private String concepto;
     @Column(
-            name = "apellido_paciente",
+            name = "citas_fecha",
             nullable = false
     )
-    private String apellidoDoctor;
-    @Column(
-            name = "especialidad_doctor",
-            nullable = false
-    )
-    private String especialidad;
-
+    private String fechaCita;
 }
